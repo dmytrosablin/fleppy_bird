@@ -1,8 +1,8 @@
 
 //board
 let board;
-let boardWidth = screen.width;
-let boardHeight = 640;
+let boardWidth = window.innerWidth;
+let boardHeight = window.innerHeight;
 let context;
 
 //bird
@@ -41,6 +41,7 @@ window.onload = function() {
     board = document.getElementById("board");
     board.height = boardHeight;
     board.width = boardWidth;
+    console.log(board.width)
     context = board.getContext("2d"); //used for drawing on the board
 
     //draw flappy bird
@@ -63,6 +64,10 @@ window.onload = function() {
     requestAnimationFrame(update);
     setInterval(placePipes, 1500); //every 1.5 seconds
     document.addEventListener("click", moveBird);
+    document.addEventListener("wheel", (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+    });
 }
 
 function update() {
